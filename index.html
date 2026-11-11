@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naomi Lac | Data Analyst</title>
+  <meta name="description" content="Portfolio of Hong Nhu (Naomi) Lac, Data Analyst in Perth. Python, statistics, Power BI and Tableau.">
+
+  <!-- Fonts: Fraunces for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. COLOURS AND BASICS
+       Change these variables to restyle the whole site.
+       ========================================================= */
+    :root {
+      --bg: #fbf8f4;          /* page background (warm paper) */
+      --surface: #ffffff;     /* cards */
+      --ink: #1f2430;         /* headings */
+      --text: #4a5160;        /* body text */
+      --muted: #7a8190;       /* small labels */
+      --line: #e8e2da;        /* borders */
+      --accent: #0f766e;      /* teal: links, buttons */
+      --accent-soft: #e3f3f1; /* teal tint for chips */
+      --warm: #c2410c;        /* coral: highlights */
+      --warm-soft: #fdeee6;
+      --radius: 14px;
+      --max: 1200px;          /* max content width */
+    }
+
+    /* Dark mode: follows the visitor's device setting */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14171d;
+        --surface: #1c2028;
+        --ink: #f2efe9;
+        --text: #c3c7cf;
+        --muted: #8d93a0;
+        --line: #2c313b;
+        --accent: #5eead4;
+        --accent-soft: #163632;
+        --warm: #fb923c;
+        --warm-soft: #3a2418;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3 {
+      font-family: "Fraunces", Georgia, serif;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    a { color: var(--accent); }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section { padding: 88px 0; }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 42px);
+      margin-bottom: 20px;
+    }
+
+    .section-intro { max-width: 800px; margin-bottom: 40px; }
+
+    /* =========================================================
+       2. NAVIGATION BAR
+       ========================================================= */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Hide the menu links on small phones; the page still scrolls */
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+    }
+
+    /* =========================================================
+       3. HERO (top of the page)
+       ========================================================= */
+    .hero { padding: 96px 0 72px; }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 68px);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-tagline {
+      font-size: clamp(18px, 2.2vw, 22px);
+      max-width: 800px;
+      margin-bottom: 32px;
+    }
+
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--accent);
+    }
+
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-secondary { color: var(--accent); }
+    .btn:hover { opacity: 0.85; }
+
+    /* Three headline numbers */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .stat-number {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(26px, 3vw, 32px);   /* smaller so longer numbers fit */
+      font-weight: 700;
+      color: var(--warm);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat p { font-size: 15px; }
+
+    @media (max-width: 720px) {
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       4. ABOUT
+       ========================================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p + p { margin-top: 16px; }
+
+    .about-card {
+      background: var(--warm-soft);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .about-card h3 { font-size: 20px; margin-bottom: 12px; }
+
+    .about-card ul { list-style: none; }
+
+    .about-card li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .about-card li:last-child { border-bottom: none; }
+
+    @media (max-width: 820px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       5. SKILLS
+       ========================================================= */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .skill-card h3 { font-size: 20px; margin-bottom: 12px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    /* =========================================================
+       6. PROJECTS
+       ========================================================= */
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .project h3 { font-size: 26px; margin: 8px 0 16px; }
+
+    .project-meta { font-size: 14px; color: var(--muted); }
+
+    .project dl dt {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: 16px;
+    }
+
+    .project dl dd { margin-top: 4px; }
+
+    .result {
+      background: var(--accent-soft);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    .project-links { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .project-links a { font-weight: 600; text-decoration: none; }
+    .project-links a:hover { text-decoration: underline; }
+
+    /* Image area. Until you add a screenshot, a placeholder box shows. */
+    .project-image {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 16px;
+    }
+
+    .project-image img { width: 100%; height: 100%; object-fit: contain; }
+    .project-image:has(img) { padding: 0; min-height: 0; }
+
+    .project.coming-soon {
+      border-style: dashed;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .project { grid-template-columns: 1fr; padding: 24px; }
+    }
+
+    /* =========================================================
+       SHARED: CARDS AND CLICK-TO-OPEN BOXES
+       ========================================================= */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(31, 36, 48, 0.08);
+    }
+
+    summary { list-style: none; cursor: pointer; }          /* hide the default triangle */
+    summary::-webkit-details-marker { display: none; }
+
+    .toggle {                                               /* round + that turns into x */
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    details[open] > summary .toggle { transform: rotate(45deg); }
+
+    /* =========================================================
+       HOW I WORK (numbered steps)
+       ========================================================= */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      list-style: none;
+      counter-reset: step;
+    }
+    .step { padding: 22px; counter-increment: step; }
+    .step::before {
+      content: "0" counter(step);
+      display: block;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .step h3 { font-size: 18px; margin-bottom: 6px; }
+    .step p { font-size: 15px; }
+
+    @media (max-width: 1000px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+    /* =========================================================
+       WORK EXPERIENCE (click to open)
+       ========================================================= */
+    .job { margin-bottom: 16px; }
+    .job summary {
+      padding: 24px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px 16px;
+    }
+    .job h3 { font-size: 22px; }
+    .job-company { color: var(--accent); font-weight: 600; }
+    .summary-right { display: flex; align-items: center; gap: 12px; }
+    .job-date { font-size: 14px; font-weight: 600; color: var(--muted); }
+    .job-body { padding: 0 28px 24px; }
+    .job ul { padding-left: 20px; }
+    .job li { margin-top: 6px; }
+    .job li::marker { color: var(--warm); }
+
+    @media (max-width: 600px) {
+      .job summary { padding: 20px; }
+      .job-body { padding: 0 20px 20px; }
+    }
+
+    /* =========================================================
+       HERO WITH PHOTO
+       ========================================================= */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;   /* text column a bit wider than the photo */
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 1 / 1;                /* square */
+      object-fit: cover;                  /* fills the square without stretching */
+      object-position: center top;        /* keeps your face in view */
+      border-radius: 50%;                 /* circle; use 24px for a rounded square */
+      border: 6px solid var(--surface);
+      box-shadow: 0 10px 30px rgba(31, 36, 48, 0.12);
+      justify-self: center;
+    }
+
+    /* Phones: photo on top and smaller, text underneath */
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-photo { max-width: 180px; order: -1; justify-self: start; }
+    }
+
+    /* =========================================================
+       PHOTO SLIDER (for projects with more than one picture)
+       ========================================================= */
+    .slider { align-self: start; }
+    .frame { position: relative; }
+
+    .slides {
+      display: flex;
+      overflow-x: auto;                /* photos sit side by side in one row */
+      scroll-snap-type: x mandatory;   /* each swipe stops on a whole photo */
+      scroll-behavior: smooth;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--bg);
+      scrollbar-width: none;
+    }
+    .slides::-webkit-scrollbar { display: none; }
+
+    .slides img {
+      flex: 0 0 100%;                  /* each photo takes the full width */
+      width: 100%;
+      aspect-ratio: 16 / 10;           /* every photo gets the same frame */
+      object-fit: contain;             /* shows the whole photo, no cropping */
+      scroll-snap-align: start;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(31, 36, 48, 0.12);
+    }
+    .slide-btn.prev { left: 10px; }
+    .slide-btn.next { right: 10px; }
+    .slide-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .slide-count { text-align: center; font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+    /* =========================================================
+       7. MY PROGRESS (timeline)
+       ========================================================= */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      max-width: 900px;
+    }
+
+    .timeline::before {           /* the vertical line */
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .milestone { position: relative; padding-bottom: 36px; }
+    .milestone:last-child { padding-bottom: 0; }
+
+    .milestone::before {          /* the dot */
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+    }
+
+    .milestone.now::before { background: var(--warm); }
+
+    .milestone-date {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .milestone h3 { font-size: 20px; margin: 2px 0 4px; }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-left: 8px;
+      vertical-align: middle;
+      background: var(--warm-soft);
+      color: var(--warm);
+    }
+
+    /* =========================================================
+       8. CONTACT AND FOOTER
+       ========================================================= */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .contact-box .section-intro { margin: 0 auto 28px; }
+    .contact-box .buttons { justify-content: center; }
+
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#top" class="logo">Naomi Lac</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#progress">Progress</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+        <p class="section-label">Data Analyst | Business Analyst | Predictive Analytics — Perth</p>
+        <h1>Hi, I'm Naomi.</h1>
+        <p class="hero-tagline">
+          With a background in Predictive Analytics and Banking & Finance, I bring together analytical thinking, technical
+           skills and business understanding. I enjoy working with data, understanding how systems and processes work, and 
+           finding practical ways to solve problems and support better decisions.
+        </p>
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">See my projects</a>
+          <!-- Upload your resume PDF to the same folder and name it resume.pdf -->
+          <a href="resume.pdf" class="btn btn-secondary" download>Download resume</a>
+        </div>
+          </div>
+          <!-- YOUR PHOTO: save it as images/naomi.jpg (or change the name below) -->
+          <img class="hero-photo" src="image/naomi.png" alt="Photo of Naomi Lac">
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">86.13/100</div>
+            <p>Master of Predictive Analytics, Curtin University (Merit Scholarship)</p>
+          </div>
+          <div class="stat">
+            <div class="stat-number">250K+ listings | 5M+ reviews</div>
+            <p>Airbnb market analysis and price prediction using Python and machine learning.</p>
+          </div>
+          <div class="stat">
+            <div class="stat-number">300+ survey responses</div>
+            <p>Digital banking customer satisfaction research using regression and factor analysis.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="section-label">About me</p>
+          <h2 class="section-title">From banking and finance to data and business analytics</h2>
+          <p>
+            I started out in banking and finance in Ho Chi Minh City, where an internship in
+            Military Bank showed me how much good decisions depend on accurate,
+            well-checked data.
+          </p>
+          <p>
+            That interest brought me to Perth to complete a Master of Predictive Analytics at
+            Curtin University. Through my studies and projects, I explored different ways to 
+            work with data, from cleaning and statistical analysis to machine learning, 
+            visualisation and communicating findings.
+          </p>
+          <p>
+            Alongside my studies, I have worked as a Shift Manager, developing my leadership, 
+            communication and problem-solving skills in a fast-paced environment. I am also 
+            gaining practical business analysis experience through my internship at Element47.
+          </p>
+          <p>
+            I enjoy learning new things, understanding different perspectives and finding ways 
+            to connect technical information with real business needs.
+            <!-- Optional: add one personal line here, e.g. a hobby or an interest in the arts. -->
+          </p>
+        </div>
+
+        <aside class="about-card">
+          <h3>What I'm looking for</h3>
+          <p>A hands-on role where I can combine analytical thinking, technology and business understanding:</p>
+          <ul>
+            <li>Data Analytics, Business Intelligence and Data Science</li>
+            <li>Business Analysis and ICT Business Analysis</li>
+            <li>Financial Planning & Analysis</li>
+            <li>Business process improvement and data-driven decision-making</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+        <!-- ===================== HOW I WORK ===================== -->
+    <section id="approach">
+      <div class="container">
+        <p class="section-label">How I work</p>
+        <h2 class="section-title">From question to decision</h2>
+        <p class="section-intro">Whether it's a dashboard, a model or a business process, I follow the same steps.</p>
+
+        <ol class="steps">
+          <li class="step card"><h3>Scope & Define</h3><p>Clarify business objectives, translate stakeholders' requirements into analytical questions, and establish success metrics.</p></li>
+          <li class="step card"><h3>Prepare & Validate</h3><p>Clean, structure, and validate raw datasets to ensure data integrity and auditability.</p></li>
+          <li class="step card"><h3>Explore & Analyse</h3><p>Conduct exploratory analysis (EDA) using statistical methods and visual tools to discover trends, anomalies, and relationships.</p></li>
+          <li class="step card"><h3>Model & Predict</h3><p>Apply machine learning algorithms (e.g., Random Forest, XGBoost, Regression) where predictive modelling drives strategic value.</p></li>
+          <li class="step card"><h3>Communicate & Execute</h3><p>Design intuitive Power BI/Tableau dashboards and author executive summaries that bridge technical findings with actionable business strategies.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills">
+      <div class="container">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title">My toolkit</h2>
+        <p class="section-intro">I enjoy learning and using different tools to explore data, solve problems and communicate findings.</p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Programming & Data Analysis</h3>
+            <div class="chips">
+              <span class="chip">Pandas</span><span class="chip">Python</span>
+              <span class="chip">NumPy</span><span class="chip">Scikit-learn</span>
+              <span class="chip">R</span><span class="chip">GitHub</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Statistics & Machine Learning</h3>
+            <div class="chips">
+              <span class="chip">Regression</span><span class="chip">Factor analysis</span>
+              <span class="chip">EDA</span><span class="chip">Data cleaning</span>
+              <span class="chip">Classification</span><span class="chip">Clustering</span>
+              <span class="chip">Time Series</span><span class="chip">Random Forest</span>
+              <span class="chip">XGBoost</span><span class="chip">SHAP</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Business Intelligence & Visualisation</h3>
+            <div class="chips">
+              <span class="chip">Power BI</span><span class="chip">Tableau</span>
+              <span class="chip">Excel</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Databases & Technology</h3>
+            <div class="chips">
+              <span class="chip">SQL</span><span class="chip">MySQL</span>
+              <span class="chip">PostgreSQL</span><span class="chip">AWS</span>
+              <span class="chip">Jupyter Notebook</span><span class="chip">Google Colab</span>
+              <span class="chip">VS Code</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Business & Analytical Skills</h3>
+            <div class="chips">
+              <span class="chip">Financial Analysis</span><span class="chip">Business Understanding</span>
+              <span class="chip">Requirements Analysis</span><span class="chip">Problem-Solving</span>
+              <span class="chip">Process Improvement</span><span class="chip">Data Quality Validation</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Research & Survey Analysis</h3>
+            <div class="chips">
+              <span class="chip">SPSS</span><span class="chip">Google Forms</span>
+              <span class="chip">Quantitative Research</span>
+              <span class="chip">Statistical Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK EXPERIENCE ===================== -->
+    <!-- Each job is a <details> box: the <summary> is always visible, the rest opens on click.
+         Add "open" after <details to make a job start opened. -->
+    <section id="experience">
+      <div class="container">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+        <p class="section-intro">Roles that taught me how businesses run, and why accurate data matters. Click a role to see details.</p>
+
+
+        <details class="job card" open>
+          <summary>
+            <h3>Data & Business Analyst Intern<span class="job-company">| Element47</span></h3>
+            <span class="summary-right"><span class="job-date">October 2026 – Present</span><span class="toggle">+</span></span>
+          </summary>
+          <div class="job-body">
+            <ul>
+              <li>Collected, consolidated and validated data from site photographs, 
+                audit records, technical registers and utility bills across energy and metering projects.</li>
+              <li>Performed cross-source data reconciliation to identify missing information, 
+                inconsistencies and errors in equipment, inverter, NMI and meter records.</li>
+              <li>Analysed large-scale, 5-minute interval electricity consumption datasets to examine usage patterns, 
+                identify anomalies and support energy performance analysis.</li>
+              <li>Analysed utility billing data by comparing calculated charges against actual bills 
+                to identify pricing variances and discrepancies.</li>
+              <li>Used Microsoft Excel and CSV datasets extracted from SQL databases 
+                to match records, investigate anomalies and improve data accuracy.</li>
+              <li>Prepared technical documentation and summarised findings to support project reviews, 
+                stakeholder communication and informed decision-making.</li>
+            </ul>
+          </div>
+        </details>
+
+
+        <details class="job card" open>
+          <summary>
+            <h3>Shift Manager <span class="job-company">| McDonald's, Ascot Waters</span></h3>
+            <span class="summary-right"><span class="job-date">January 2023 – Present</span><span class="toggle">+</span></span>
+          </summary>
+          <div class="job-body">
+            <ul>
+              <li>Analyse real-time demand patterns to allocate personnel, managing operational efficiency and service bottlenecks during peak periods.</li>
+              <li>Reconcile daily financial transactions, manage cash variance reporting, and ensure strict compliance with operational checklists and safety protocols.</li>
+              <li>Supervise and mentor crew members, fostering clear communication and structured problem-solving under fast-paced operational constraints.</li>
+              <li>Monitor stock levels and projected product demand to ensure high-volume raw materials were consistently available without over-stocking.</li>
+              <li>Strictly enforce FIFO (First-In, First-Out) rotation, waste tracking procedures, and storage guidelines, reducing stock variance and minimising food waste.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="job card">
+          <summary>
+            <h3>Credit Support Assistant / Intern <span class="job-company">| MB Bank</span></h3>
+            <span class="summary-right"><span class="job-date">January 2021 – June 2022</span><span class="toggle">+</span></span>
+          </summary>
+          <div class="job-body">
+            <ul>
+              <li>Reviewed corporate credit applications, letters of credit, 
+                and financial statements to verify accuracy and compliance with institutional risk policies.</li>
+              <li>Maintained customer documentation and credit registers, 
+                auditing high-volume data points to protect reporting integrity.</li>
+              <li>Supported senior credit officers in risk assessment tasks, 
+                gaining hands-on experience in financial statement analysis and corporate banking processes.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects">
+      <div class="container">
+        <p class="section-label">Projects</p>
+        <h2 class="section-title">A few things I've worked on</h2>
+        <p class="section-intro">I enjoy working on projects that start with a question, 
+          involve exploring the data and lead to findings that can be used in practice.</p>
+
+        <!-- PROJECT 1 -->
+        <article class="project">
+          <div>
+            <p class="project-meta">Python · Machine Learning · Power BI</p>
+            <h3>Airbnb Market Analysis and Price Prediction</h3>
+            <dl>
+              <dt>The Challenge</dt>
+              <dd>Identify key price drivers across diverse rental markets to assist property managers and investors 
+                in optimising pricing strategies.</dd>
+              <dt>Execution</dt>
+              <dd>Cleaned and engineered features from a large-scale dataset comprising over 250,000 listings 
+                and 5 million user reviews. Evaluated four distinct machine learning algorithms 
+                (including Random Forest and XGBoost) to predict listing prices, 
+                using SHAP values to explain feature importance.</dd>
+            </dl>
+            <!-- Replace this with your real headline finding, e.g. "Room type and location drove most of the price difference." -->
+            <p class="result">Outcome: Built an interactive Power BI dashboard highlighting regional price elasticity, 
+              demand trends, and revenue opportunities, providing an intuitive interface for commercial evaluation.</p>
+            <div class="project-links">
+              <a href="https://github.com/lachongnhu-create/airbnb-market-analysis" target="_blank" rel="noopener">View code on GitHub →</a>
+            </div>
+          </div>
+          <!-- PHOTO SLIDER: add one <img> line per photo. Arrows and the counter appear by themselves
+               when there is more than one photo. -->
+          <div class="slider">
+            <div class="frame">
+              <div class="slides">
+                <img src="image/airbnb-1.png" alt="Power BI dashboard showing Airbnb market overview">
+                <img src="image/airbnb-2.png" alt="Power BI dashboard showing Airbnb price drivers">
+                <img src="image/airbnb-3.png" alt="Power BI dashboard showing Airbnb demand trends">
+                <img src="image/airbnb-4.png" alt="Power BI dashboard showing Airbnb investment recommendation">
+              </div>
+              <button class="slide-btn prev" aria-label="Previous photo">‹</button>
+              <button class="slide-btn next" aria-label="Next photo">›</button>
+            </div>
+            <p class="slide-count">1 / 1</p>
+          </div>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="project">
+          <div>
+            <p class="project-meta">Python · MySQL · Tableau · Curtin University (Awarded 91/100)</p>
+            <h3>Maths Background and Student Success in STEM</h3>
+            <dl>
+              <dt>The Challenge</dt>
+              <dd>Determine how pre-tertiary mathematical preparation impacts academic retention 
+                and performance across STEM degree tracks.</dd>
+              <dt>Execution</dt>
+              <dd>Engineered relational tables using MySQL, merged multi-year student demographic and academic performance records, 
+                and conducted statistical analysis using Python.</dd>
+            </dl>
+            <p class="result">Outcome: Produced interactive Tableau dashboards outlining critical performance bottlenecks. 
+              Presented data-backed recommendations to academic stakeholders to assist in targeting early intervention 
+              and student support resources.</p>
+          </div>
+
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="project">
+          <div>
+            <p class="project-meta">SPSS · Advanced Excel · Quantitative Survey Research (Thesis - Awarded 10/10)</p>
+            <h3>Customer Satisfaction in Digital Banking</h3>
+            <dl>
+              <dt>The Challenge</dt>
+              <dd>Evaluate key drivers of adoption and satisfaction within digital banking platforms 
+                to support customer retention.</dd>
+              <dt>Execution</dt>
+              <dd>Designed and fielded a survey collecting over 300 validated responses. 
+                Utilised Exploratory Factor Analysis (EFA) to group service dimensions 
+                and Multiple Linear Regression to measure their direct impact on overall satisfaction.</dd>
+            </dl>
+            <p class="result">Outcome: Identified platform trust, system availability, 
+              and UX clarity as the primary predictors of customer satisfaction, 
+              formulating actionable service improvement strategies for banking teams.</p>
+          </div>
+          <div class="slider">
+            <div class="frame">
+              <div class="slides">
+                <img src="image/digitalbank-1.png" >
+                <img src="image/digitalbank-2.png" >
+                <img src="image/digitalbank-3.png" >
+                <img src="image/digitalbank-4.png" >
+              </div>
+              <button class="slide-btn prev" aria-label="Previous photo">‹</button>
+              <button class="slide-btn next" aria-label="Next photo">›</button>
+            </div>
+            <p class="slide-count">1 / 1</p>
+          </div>
+        </article>
+
+
+      </div>
+    </section>
+
+    <!-- ===================== MY PROGRESS ===================== -->
+    <section id="progress">
+      <div class="container">
+        <p class="section-label">My progress</p>
+        <h2 class="section-title">What I've learned along the way</h2>
+
+        <div class="timeline">
+          <!-- NEWEST AT THE TOP. Copy a milestone block to add a new one. -->
+          <div class="milestone now">
+            <p class="milestone-date">October 2026 – Present</p>
+            <h3>Data & Business Analyst Intern, Element47</h3>
+            <p>Developed practical experience in handling large-scale time-series data, 
+              performing data quality checks, reconciling information across multiple sources 
+              and translating technical data into meaningful insights to support business decisions.</p>
+          </div>
+
+          <div class="milestone now">
+            <p class="milestone-date">January 2023 – Present</p>
+            <h3>Shift Manager, McDonald's Ascot Waters</h3>
+            <p>Developed strong communication, problem-solving, leadership, time-management, 
+              and decision-making skills in a fast-paced environment.
+            </p>
+          </div>
+          <div class="milestone">
+            <p class="milestone-date">February 2023 – January 2025</p>
+            <h3>Master of Predictive Analytics, Curtin University</h3>
+            <p>Graduated with a CWA of 86.13/100 and Merit Scholarship. 
+              Received four Letters of Recognition from the Dean of Science. 
+              Research project on STEM student success awarded 91/100.</p>
+          </div>
+          <div class="milestone">
+            <p class="milestone-date">January 2021 – June 2022</p>
+            <h3>Intern, Corporate Customer & Credit Department, MB Bank</h3>
+            <p>Started as an intern and progressed to a Credit Support Assistant, 
+              gaining approximately 18 months of experience in banking industry.
+              This experience gave me a practical understanding of financial information 
+              and the importance of data accuracy in business decisions.
+            </p>
+          </div>
+          <div class="milestone">
+            <p class="milestone-date">September 2017 – June 2022</p>
+            <h3>Bachelor of Banking and Finance | Banking University of Ho Chi Minh City.</h3>
+            <p> Built a foundation in finance, banking and business principles. 
+              Graduated with a GPA of 8.08/10; digital banking customer satisfaction thesis awarded 10/10.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">Let's talk</h2>
+          <p class="section-intro">I'm looking for Data Analyst roles in Perth. I'd love to hear from you.</p>
+          <div class="buttons">
+            <a href="mailto:lachongnhu@gmail.com" class="btn btn-primary">Email me</a>
+            <a href="https://www.linkedin.com/in/hong-nhu-lac-9374b8206/" class="btn btn-secondary" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/lachongnhu-create" class="btn btn-secondary" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Hong Nhu (Naomi) Lac · Perth, Western Australia</div>
+  </footer>
+
+  <!-- ===================== PHOTO SLIDER SCRIPT ===================== -->
+  <script>
+    // Makes every .slider on the page work, so each project can have its own
+    document.querySelectorAll(".slider").forEach(slider => {
+      const track = slider.querySelector(".slides");
+      const total = track.querySelectorAll("img").length;
+      const prev = slider.querySelector(".prev");
+      const next = slider.querySelector(".next");
+      const count = slider.querySelector(".slide-count");
+
+      // Only one photo? Hide the arrows and the counter.
+      if (total < 2) {
+        prev.hidden = true;
+        next.hidden = true;
+        count.hidden = true;
+        return;
+      }
+
+      // Which photo is showing (0 = first)
+      const current = () => track.clientWidth ? Math.round(track.scrollLeft / track.clientWidth) : 0;
+      const goTo = i => track.scrollTo({ left: i * track.clientWidth });
+
+      function update() {
+        const i = current();
+        count.textContent = (i + 1) + " / " + total;
+        prev.disabled = i === 0;           // fade the left arrow on the first photo
+        next.disabled = i === total - 1;   // fade the right arrow on the last photo
+      }
+
+      prev.addEventListener("click", () => goTo(current() - 1));
+      next.addEventListener("click", () => goTo(current() + 1));
+      track.addEventListener("scroll", update);   // also updates when swiping on a phone
+      update();
+    });
+  </script>
+
+</body>
+</html>
